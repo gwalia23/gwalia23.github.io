@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gursimran Walia — Computer Engineer</title>
+<meta name="description" content="Computer Engineering student at UBC. Building at the intersection of hardware, software, and AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e8e4de;
+  --border2: #d4cfc8;
+  --accent: #1a1a1a;
+  --highlight: #c8a96e;
+  --highlight2: #8b6f47;
+  --text: #1a1a1a;
+  --sub: #6b6560;
+  --dim: #9e9892;
+  --tag-bg: #f0ede8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%23c8bfb0' opacity='0.25'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(248,247,244,0.94);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 32px;
+  height: 60px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 18px; color: var(--text);
+}
+.nav-logo span { color: var(--highlight2); }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a {
+  display: block; padding: 6px 14px; border-radius: 6px;
+  color: var(--sub); text-decoration: none; font-size: 13.5px;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+.nav-cta {
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+}
+.nav-cta:hover { background: #333 !important; }
+
+/* WRAP */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+/* HERO */
+.hero {
+  padding: 120px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* LEFT — text */
+.hero-left {
+  opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
+}
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(44px, 5.5vw, 72px);
+  line-height: 1.05; letter-spacing: -1.5px;
+  color: var(--text); font-weight: 700;
+  margin-bottom: 6px;
+}
+h1 em { font-style: italic; color: var(--highlight2); font-weight: 400; }
+.hero-role {
+  font-size: 15px; color: var(--sub); font-weight: 300;
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-role::before {
+  content: ""; display: block;
+  width: 32px; height: 1.5px; background: var(--highlight);
+}
+
+/* ABOUT paragraph */
+.hero-about {
+  margin-bottom: 36px;
+}
+.hero-about p {
+  font-size: 15px; color: var(--sub); line-height: 1.9;
+  margin-bottom: 14px;
+}
+.hero-about p:last-child { margin-bottom: 0; }
+
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 22px; border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13.5px; font-weight: 500;
+  text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+}
+.btn-dark { background: var(--text); color: var(--bg); }
+.btn-dark:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.btn-outline { border: 1.5px solid var(--border2); color: var(--sub); background: transparent; }
+.btn-outline:hover { border-color: var(--text); color: var(--text); transform: translateY(-2px); }
+
+/* RIGHT — photo */
+.hero-right {
+  opacity: 0; animation: fadeUp 0.7s 0.25s ease forwards;
+  display: flex; flex-direction: column; gap: 0;
+  position: sticky; top: 80px;
+}
+.photo-frame {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+}
+.photo-frame img {
+  width: 100%; display: block;
+  aspect-ratio: 4/5; object-fit: cover; object-position: top center;
+}
+.photo-caption {
+  background: var(--surface); border: 1px solid var(--border);
+  border-top: none; border-radius: 0 0 20px 20px;
+  padding: 16px 20px;
+}
+.photo-caption-name {
+  font-family: "Playfair Display", serif; font-size: 16px; font-weight: 600;
+  margin-bottom: 2px;
+}
+.photo-caption-title { font-size: 12.5px; color: var(--sub); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: 0 0 80px; }
+
+/* SECTION HEADERS */
+.s-head { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+.s-head h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 30px; letter-spacing: -0.5px; color: var(--text); white-space: nowrap;
+}
+.s-num { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; }
+.s-line { flex: 1; height: 1px; background: var(--border); }
+section { margin-bottom: 96px; }
+
+/* EXPERIENCE */
+.exp-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px 36px; margin-bottom: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.exp-card:hover { border-color: var(--border2); box-shadow: 0 6px 32px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.exp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.exp-co { font-family: "Playfair Display", serif; font-size: 21px; margin-bottom: 3px; }
+.exp-role { font-size: 12px; color: var(--highlight2); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+.exp-date { font-size: 12.5px; color: var(--dim); text-align: right; }
+.exp-where { font-size: 11.5px; color: var(--dim); opacity: 0.7; text-align: right; }
+.bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.bullets li { display: flex; gap: 12px; font-size: 14px; color: var(--sub); line-height: 1.7; }
+.bullets li::before { content: "—"; color: var(--highlight); flex-shrink: 0; }
+
+/* PROJECTS */
+.proj-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px 36px; margin-bottom: 16px;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+}
+.proj-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.09); transform: translateY(-3px); border-color: var(--border2); }
+.proj-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.proj-title-row { display: flex; align-items: center; gap: 12px; }
+.proj-emoji { font-size: 26px; }
+.proj-name {
+  font-family: "Playfair Display", serif;
+  font-size: 22px; letter-spacing: -0.2px; color: var(--text);
+}
+.proj-date-badge {
+  font-size: 11.5px; color: var(--dim);
+  background: var(--tag-bg); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 100px;
+}
+.proj-desc { font-size: 14px; color: var(--sub); line-height: 1.82; margin-bottom: 18px; }
+.proj-highlights { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.proj-highlight { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--sub); line-height: 1.6; }
+.proj-highlight::before { content: "↗"; color: var(--highlight2); flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag {
+  font-size: 11.5px; padding: 4px 12px; border-radius: 100px;
+  background: var(--tag-bg); color: var(--sub);
+  border: 1px solid var(--border); letter-spacing: 0.02em;
+}
+
+/* SKILLS */
+.skills-grid { display: flex; flex-direction: column; gap: 28px; }
+.skill-group-label {
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--highlight2); margin-bottom: 12px; font-weight: 500;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 8px;
+  background: var(--tag-bg); border: 1px solid var(--border);
+  font-size: 13px; color: var(--sub);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  cursor: default;
+}
+.chip:hover { border-color: var(--border2); color: var(--text); transform: translateY(-1px); }
+.cd { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.ca { background: #22c55e; }
+.cb { background: #3b82f6; }
+.cc { background: #a855f7; }
+.cd2 { background: #f97316; }
+.ce { background: #eab308; }
+
+/* EDUCATION */
+.edu-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px 30px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.edu-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.edu-school { font-family: "Playfair Display", serif; font-size: 19px; margin-bottom: 4px; }
+.edu-deg { font-size: 13px; color: var(--sub); }
+.edu-badge { font-size: 12px; color: var(--sub); padding: 5px 14px; border: 1px solid var(--border); border-radius: 100px; white-space: nowrap; }
+.course-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.course-chip { font-size: 12px; padding: 4px 12px; border-radius: 6px; background: #f0ede8; border: 1px solid #e0dbd4; color: var(--sub); }
+
+/* CONTACT */
+.contact-box {
+  background: var(--text); color: var(--bg);
+  border-radius: 24px; padding: 72px 56px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.contact-box::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(200,169,110,0.15), transparent 60%),
+              radial-gradient(circle at 70% 50%, rgba(200,169,110,0.1), transparent 60%);
+}
+.contact-box h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 44px; letter-spacing: -1.5px; margin-bottom: 12px;
+  color: #f8f7f4; position: relative;
+}
+.contact-box h2 em { font-style: italic; color: var(--highlight); }
+.contact-box p { color: rgba(248,247,244,0.6); max-width: 460px; margin: 0 auto 12px; font-size: 14.5px; position: relative; }
+.contact-email {
+  font-size: 15px; color: rgba(248,247,244,0.85);
+  margin-bottom: 36px; position: relative;
+  font-family: "Playfair Display", serif; font-style: italic;
+}
+.contact-email a { color: var(--highlight); text-decoration: none; }
+.contact-email a:hover { text-decoration: underline; }
+.contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-light { background: var(--bg); color: var(--text); }
+.btn-light:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.btn-ghost-light { border: 1.5px solid rgba(255,255,255,0.2); color: rgba(248,247,244,0.75); background: transparent; }
+.btn-ghost-light:hover { border-color: rgba(255,255,255,0.5); color: #f8f7f4; transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0; text-align: center;
+  font-size: 12px; color: var(--dim); position: relative; z-index: 1;
+}
+footer a { color: var(--sub); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { position: static; max-width: 300px; }
+  .nav-links { display: none; }
+  h1 { font-size: 46px; }
+  .contact-box { padding: 44px 28px; }
+  .exp-card, .proj-card { padding: 24px 22px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Gursimran <span>Walia</span></span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero" id="about">
+
+  <!-- LEFT: name + about + buttons -->
+  <div class="hero-left">
+    <h1>Gursimran<br><em>Singh Walia</em></h1>
+    <p class="hero-role">Computer Engineering @ UBC &nbsp;·&nbsp; Vancouver, BC</p>
+
+    <div class="hero-about">
+      <p>
+        I'm a Computer Engineering student at the University of British Columbia with a deep passion for building systems that operate at the intersection of hardware and software. Whether it's designing FPGA-based cryptographic accelerators, implementing memory allocators in C, or shipping full-stack web applications with real-time capabilities — I enjoy engineering solutions end to end.
+      </p>
+      <p>
+        My work spans embedded systems and robotics (ROS 2 autonomy stacks on NVIDIA Jetson for F1TENTH vehicles), digital hardware design (SystemVerilog, VHDL, FPGA synthesis), backend engineering (ASP.NET Core, Node.js, REST APIs, Azure), and AI/ML integration (LangChain, RAG pipelines, TensorFlow, PyTorch). I'm equally comfortable writing low-level C for a microcontroller as I am building a cloud-deployed web service.
+      </p>
+      <p>
+        Outside of coursework and internships, I actively work on projects that push the limits of performance — from parallelizing hardware key-crackers to cut crack times by 99%, to optimizing ROS 2 QoS policies to reduce vehicle latency by 30%. I care deeply about building things that are not just functional, but efficient and well-crafted.
+      </p>
+      <p>
+        I'm especially drawn to roles in software engineering, embedded systems, robotics, and AI — anywhere that rewards a systems-level mindset and a love for building things that work reliably in the real world.
+      </p>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-dark">Get in Touch</a>
+      <a href="https://github.com/gwalia23" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/gursimranwalia" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: photo -->
+  <div class="hero-right">
+    <div class="photo-frame">
+      <img src="assets/profile.jpeg" alt="Gursimran Singh Walia">
+    </div>
+  </div>
+
+</div><!-- /hero -->
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="s-head reveal">
+    <span class="s-num">01</span>
+    <h2>Experience</h2>
+    <div class="s-line"></div>
+  </div>
+
+  <div class="exp-card reveal">
+    <div class="exp-top">
+      <div>
+        <div class="exp-co">ScaleEasy Inc.</div>
+        <div class="exp-role">Software Engineering Intern</div>
+      </div>
+      <div>
+        <div class="exp-date">May 2025 – Aug 2025</div>
+        <div class="exp-where">Remote, Canada</div>
+      </div>
+    </div>
+    <ul class="bullets">
+      <li>Built backend services for an Electronic Traffic Ticket Submissions platform using <strong>ASP.NET Core (C#)</strong>, exposing RESTful APIs for ticket intake, document uploads, and case status workflows.</li>
+      <li>Deployed on <strong>Azure App Services</strong> with Azure SQL, optimizing indexed queries and transactional consistency — improving submission processing performance by <strong>~25–30%</strong> under concurrent load.</li>
+      <li>Implemented <strong>JWT authentication</strong>, RBAC authorization policies, and structured logging integrated with Azure monitoring tools to enhance security, observability, and deployment reliability.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-head reveal">
+    <span class="s-num">02</span>
+    <h2>Projects</h2>
+    <div class="s-line"></div>
+  </div>
+
+  <div class="proj-card reveal">
+    <div class="proj-top-row">
+      <div class="proj-title-row">
+        <span class="proj-emoji">🏎️</span>
+        <div class="proj-name">F1TENTH Autonomous Race Car</div>
+      </div>
+      <span class="proj-date-badge">Jan 2026</span>
+    </div>
+    <p class="proj-desc">Full autonomy stack on an F1TENTH vehicle using ROS 2 (rclpy) on NVIDIA Jetson, controlling the vehicle via VESC over UART with real-time telemetry, logging, and diagnostics. Fused and time-aligned LiDAR, IMU, and RGB-D (Intel RealSense) data for wall-following (PID), gap-following, and Automatic Emergency Braking.</p>
+    <div class="proj-highlights">
+      <div class="proj-highlight">Reliable emergency stops at TTC ≤ 0.4 s</div>
+      <div class="proj-highlight">Reduced camera-to-motor latency by ~30% through ROS 2 QoS, scheduling, and control gain optimization — validated via timestamp analysis and repeated on-track testing</div>
+      <div class="proj-highlight">Real-time telemetry pipeline with structured diagnostics over UART/VESC</div>
+    </div>
+    <div class="proj-tags">
+      <span class="tag">ROS 2</span><span class="tag">Python</span><span class="tag">NVIDIA Jetson</span>
+      <span class="tag">LiDAR / IMU</span><span class="tag">PID Control</span><span class="tag">VESC / UART</span><span class="tag">Intel RealSense</span>
+    </div>
+  </div>
+
+  <div class="proj-card reveal">
+    <div class="proj-top-row">
+      <div class="proj-title-row">
+        <span class="proj-emoji">💬</span>
+        <div class="proj-name">Real-Time Web Discussion App</div>
+      </div>
+      <span class="proj-date-badge">Jan 2026</span>
+    </div>
+    <p class="proj-desc">Full-stack discussion forum built as a Single-Page Application with custom client-side routing and dynamic DOM updates. Backend powered by Node.js and Express with RESTful APIs for chat room and user management, real-time messaging via WebSockets, and MongoDB persistence — supporting dozens of concurrent users without message loss.</p>
+    <div class="proj-highlights">
+      <div class="proj-highlight">Eliminated full page reloads (~100% reduction) — fully SPA-routed with dynamic DOM updates</div>
+      <div class="proj-highlight">AI-based content moderation detects and blocks inappropriate language pre-broadcast — filtering ~90–95% of offensive messages in testing</div>
+      <div class="proj-highlight">Session-based authentication and input sanitization for platform security</div>
+    </div>
+    <div class="proj-tags">
+      <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">WebSockets</span>
+      <span class="tag">MongoDB</span><span class="tag">JavaScript</span><span class="tag">AI Moderation</span>
+    </div>
+  </div>
+
+  <div class="proj-card reveal">
+    <div class="proj-top-row">
+      <div class="proj-title-row">
+        <span class="proj-emoji">🔐</span>
+        <div class="proj-name">ARC4 Decryption &amp; Cracking Circuit</div>
+      </div>
+      <span class="proj-date-badge">Dec 2025</span>
+    </div>
+    <p class="proj-desc">Hardware ARC4 decryption engine implemented in SystemVerilog, including full key scheduling (KSA) and keystream generation (PRGA), synthesized and deployed on a DE1-SoC FPGA. Parallelized key cracking using multiple hardware cores running simultaneously, each independently searching a key space partition.</p>
+    <div class="proj-highlights">
+      <div class="proj-highlight">~99% reduction in crack time — from ~3 minutes (single-core) down to ~2 seconds (multi-core parallel)</div>
+      <div class="proj-highlight">Verified correctness using SystemVerilog testbenches, ModelSim waveform analysis, and on-board FPGA validation with coverage metrics</div>
+    </div>
+    <div class="proj-tags">
+      <span class="tag">SystemVerilog</span><span class="tag">FPGA (DE1-SoC)</span><span class="tag">Quartus Prime</span>
+      <span class="tag">ModelSim</span><span class="tag">Hardware Parallelism</span>
+    </div>
+  </div>
+
+  <div class="proj-card reveal">
+    <div class="proj-top-row">
+      <div class="proj-title-row">
+        <span class="proj-emoji">🏨</span>
+        <div class="proj-name">Hotel Management System</div>
+      </div>
+      <span class="proj-date-badge">Nov 2025</span>
+    </div>
+    <p class="proj-desc">Designed and implemented a relational database using SQL (MySQL/Oracle) to manage hotel maintenance workflows, supporting 10+ normalized tables with enforced foreign-key constraints. Built a backend web application using Node.js and Express, structured with controller–service layers and REST-style endpoints, handling hundreds of CRUD operations per test run with consistent validation. Developed a lightweight frontend that eliminated manual record tracking across departments.</p>
+    <div class="proj-highlights">
+      <div class="proj-highlight">10+ normalized relational tables with full FK constraint enforcement</div>
+      <div class="proj-highlight">Controller-service backend architecture with hundreds of CRUD ops per run — consistent validation throughout</div>
+      <div class="proj-highlight">Eliminated ~100% of manual record tracking during simulated hotel maintenance workflows</div>
+    </div>
+    <div class="proj-tags">
+      <span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">Node.js</span>
+      <span class="tag">Express</span><span class="tag">REST APIs</span><span class="tag">HTML / CSS / JS</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-head reveal">
+    <span class="s-num">03</span>
+    <h2>Technical Skills</h2>
+    <div class="s-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="reveal">
+      <div class="skill-group-label">Languages</div>
+      <div class="chips">
+        <span class="chip"><span class="cd ca"></span>Python</span>
+        <span class="chip"><span class="cd ca"></span>C / C++</span>
+        <span class="chip"><span class="cd cb"></span>JavaScript / TypeScript</span>
+        <span class="chip"><span class="cd cb"></span>C#</span>
+        <span class="chip"><span class="cd ce"></span>SQL</span>
+        <span class="chip"><span class="cd ca"></span>Bash</span>
+        <span class="chip"><span class="cd cc"></span>SystemVerilog / Verilog</span>
+        <span class="chip"><span class="cd cc"></span>VHDL</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-label">Web &amp; Backend</div>
+      <div class="chips">
+        <span class="chip"><span class="cd cb"></span>React</span>
+        <span class="chip"><span class="cd cb"></span>Next.js</span>
+        <span class="chip"><span class="cd cb"></span>Angular</span>
+        <span class="chip"><span class="cd ca"></span>Node.js</span>
+        <span class="chip"><span class="cd ca"></span>Express</span>
+        <span class="chip"><span class="cd cb"></span>ASP.NET Core</span>
+        <span class="chip"><span class="cd ca"></span>FastAPI</span>
+        <span class="chip"><span class="cd ca"></span>Streamlit</span>
+        <span class="chip"><span class="cd ca"></span>WebSockets</span>
+        <span class="chip"><span class="cd cb"></span>GraphQL</span>
+        <span class="chip"><span class="cd cb"></span>REST APIs</span>
+        <span class="chip"><span class="cd ca"></span>Microservices</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-label">AI / ML</div>
+      <div class="chips">
+        <span class="chip"><span class="cd cc"></span>LangChain</span>
+        <span class="chip"><span class="cd cc"></span>LangGraph</span>
+        <span class="chip"><span class="cd cc"></span>CrewAI</span>
+        <span class="chip"><span class="cd cc"></span>TensorFlow</span>
+        <span class="chip"><span class="cd cc"></span>PyTorch</span>
+        <span class="chip"><span class="cd cc"></span>scikit-learn</span>
+        <span class="chip"><span class="cd cb"></span>RAG</span>
+        <span class="chip"><span class="cd cb"></span>Prompt Engineering</span>
+        <span class="chip"><span class="cd cc"></span>pandas / NumPy</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-label">Hardware &amp; Robotics</div>
+      <div class="chips">
+        <span class="chip"><span class="cd cc"></span>FPGA (DE1-SoC)</span>
+        <span class="chip"><span class="cd cc"></span>Quartus Prime</span>
+        <span class="chip"><span class="cd cc"></span>ModelSim</span>
+        <span class="chip"><span class="cd ca"></span>ROS 2</span>
+        <span class="chip"><span class="cd ca"></span>NVIDIA Jetson</span>
+        <span class="chip"><span class="cd ce"></span>Embedded Systems</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-label">Cloud, DevOps &amp; Databases</div>
+      <div class="chips">
+        <span class="chip"><span class="cd cb"></span>Azure</span>
+        <span class="chip"><span class="cd cb"></span>Docker</span>
+        <span class="chip"><span class="cd cb"></span>CI/CD</span>
+        <span class="chip"><span class="cd ce"></span>MySQL</span>
+        <span class="chip"><span class="cd ca"></span>MongoDB</span>
+        <span class="chip"><span class="cd ce"></span>Oracle</span>
+        <span class="chip"><span class="cd cc"></span>ChromaDB</span>
+        <span class="chip"><span class="cd cb"></span>Snowflake</span>
+        <span class="chip"><span class="cd cb"></span>Databricks</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-label">Automation &amp; Tools</div>
+      <div class="chips">
+        <span class="chip"><span class="cd cd2"></span>n8n</span>
+        <span class="chip"><span class="cd cd2"></span>Zapier</span>
+        <span class="chip"><span class="cd cd2"></span>Make</span>
+        <span class="chip"><span class="cd cd2"></span>Relevance AI</span>
+        <span class="chip"><span class="cd ca"></span>Git / GitHub</span>
+        <span class="chip"><span class="cd cb"></span>Postman</span>
+        <span class="chip"><span class="cd ce"></span>Agile / Scrum</span>
+        <span class="chip"><span class="cd cb"></span>Jupyter</span>
+        <span class="chip"><span class="cd cb"></span>Docker Compose</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="s-head reveal">
+    <span class="s-num">04</span>
+    <h2>Education</h2>
+    <div class="s-line"></div>
+  </div>
+
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-school">University of British Columbia</div>
+      <div class="edu-deg">BASc, Computer Engineering &nbsp;·&nbsp; Vancouver, BC</div>
+      <div class="course-chips">
+        <span class="course-chip">Digital System Design</span>
+        <span class="course-chip">Data Structures &amp; Algorithms</span>
+        <span class="course-chip">AI / ML</span>
+        <span class="course-chip">Databases</span>
+      </div>
+    </div>
+    <div class="edu-badge">Expected May 2027</div>
+  </div>
+
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-school">The Lawrence School — Sanawar</div>
+      <div class="edu-deg">High School &nbsp;·&nbsp; India</div>
+    </div>
+    <div class="edu-badge">2013 – 2021</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box reveal">
+    <h2>Let's build <em>together.</em></h2>
+    <p>Open to internship opportunities in software engineering, embedded systems, robotics, or AI/ML. I'd love to hear from you.</p>
+    <p class="contact-email"><a href="mailto:gursimransinghwalia23@gmail.com">gursimransinghwalia23@gmail.com</a></p>
+    <div class="contact-links">
+      <a href="mailto:gursimransinghwalia23@gmail.com" class="btn btn-light">Send Email</a>
+      <a href="https://www.linkedin.com/in/gursimranwalia" target="_blank" class="btn btn-ghost-light">LinkedIn ↗</a>
+      <a href="https://github.com/gwalia23" target="_blank" class="btn btn-ghost-light">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2025 Gursimran Singh Walia &nbsp;·&nbsp; <a href="mailto:gursimransinghwalia23@gmail.com">gursimransinghwalia23@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/gwalia23" target="_blank">github.com/gwalia23</a></p>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: "0px 0px -28px 0px" });
+reveals.forEach((el, i) => {
+  el.style.transitionDelay = (i % 3) * 80 + "ms";
+  io.observe(el);
+});
+</script>
+</body>
+</html>
