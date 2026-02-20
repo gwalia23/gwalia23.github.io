@@ -217,6 +217,42 @@ section { margin-bottom: 96px; }
   border: 1px solid var(--border); letter-spacing: 0.02em;
 }
 
+/* PROJECT MEDIA GRID (images + videos) */
+.proj-media {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 across for app screenshots */
+  gap: 12px;
+}
+
+.proj-media .media-item {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+/* force equal-sized boxes so everything aligns */
+.proj-media .media-box {
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* good for app screenshots */
+  object-fit: cover;
+  display: block;
+}
+
+/* video looks better wide */
+.proj-media.video-only {
+  grid-template-columns: 1fr; /* single wide video */
+}
+.proj-media.video-only .media-box {
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 860px) {
+  .proj-media { grid-template-columns: 1fr; }
+}
+
 /* SKILLS */
 .skills-grid { display: flex; flex-direction: column; gap: 28px; }
 .skill-group-label {
@@ -365,7 +401,7 @@ footer a:hover { color: var(--text); }
       <a href="#contact" class="btn btn-dark">Get in Touch</a>
       <a href="https://github.com/gwalia23" target="_blank" class="btn btn-outline">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/gursimranwalia" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
-      <a href="assets/Resume.pdf" target="_blank" download="Resume.pdf" class="btn btn-outline"> Resume ↓ </a>
+      <a href="assets/Resume.pdf" target="_blank" download="Resume.pdf" class="btn btn-outline"> Resume ↗</a>
     </div>
   </div>
 
@@ -428,6 +464,14 @@ footer a:hover { color: var(--text); }
     </div>
   </div>
 
+  <div class="proj-media video-only">
+    <div class="media-item">
+      <video class="media-box" controls muted playsinline preload="metadata">
+        <source src="assets/f1tenth.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
   <div class="proj-card reveal">
     <div class="proj-top-row">
       <div class="proj-title-row">
@@ -448,6 +492,18 @@ footer a:hover { color: var(--text); }
     </div>
   </div>
 
+  <div class="proj-media">
+    <div class="media-item">
+      <img class="media-box" src="assets/App1.jpeg" alt="Profile page">
+    </div>
+    <div class="media-item">
+      <img class="media-box" src="assets/App2.jpeg" alt="Chat page">
+    </div>
+    <div class="media-item">
+      <img class="media-box" src="assets/App3.jpeg" alt="Rooms list">
+    </div>
+  </div>
+
   <div class="proj-card reveal">
     <div class="proj-top-row">
       <div class="proj-title-row">
@@ -464,6 +520,12 @@ footer a:hover { color: var(--text); }
     <div class="proj-tags">
       <span class="tag">SystemVerilog</span><span class="tag">FPGA (DE1-SoC)</span><span class="tag">Quartus Prime</span>
       <span class="tag">ModelSim</span><span class="tag">Hardware Parallelism</span>
+    </div>
+  </div>
+
+  <div class="proj-media" style="grid-template-columns: 1fr;">
+    <div class="media-item">
+      <img class="media-box" src="assets/Arc4.jpeg" alt="DE1-SoC ARC4 circuit">
     </div>
   </div>
 
