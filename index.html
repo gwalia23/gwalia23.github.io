@@ -77,7 +77,7 @@ nav {
 .hero {
   padding: 120px 0 80px;
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: start;
 }
@@ -94,6 +94,19 @@ h1 {
   margin-bottom: 6px;
 }
 h1 em { font-style: italic; color: var(--highlight2); font-weight: 400; }
+
+.hero-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.hero-head-photo {
+  width: 260px;     /* adjust: 220–300 depending on preference */
+  flex: 0 0 auto;
+}
+
 .hero-role {
   font-size: 15px; color: var(--sub); font-weight: 300;
   margin-bottom: 32px;
@@ -129,12 +142,6 @@ h1 em { font-style: italic; color: var(--highlight2); font-weight: 400; }
 .btn-outline { border: 1.5px solid var(--border2); color: var(--sub); background: transparent; }
 .btn-outline:hover { border-color: var(--text); color: var(--text); transform: translateY(-2px); }
 
-/* RIGHT — photo */
-.hero-right {
-  opacity: 0; animation: fadeUp 0.7s 0.25s ease forwards;
-  display: flex; flex-direction: column; gap: 0;
-  position: sticky; top: 80px;
-}
 .photo-frame {
   border-radius: 20px; overflow: hidden;
   border: 1px solid var(--border);
@@ -144,16 +151,6 @@ h1 em { font-style: italic; color: var(--highlight2); font-weight: 400; }
   width: 100%; display: block;
   aspect-ratio: 4/5; object-fit: cover; object-position: top center;
 }
-.photo-caption {
-  background: var(--surface); border: 1px solid var(--border);
-  border-top: none; border-radius: 0 0 20px 20px;
-  padding: 16px 20px;
-}
-.photo-caption-name {
-  font-family: "Playfair Display", serif; font-size: 16px; font-weight: 600;
-  margin-bottom: 2px;
-}
-.photo-caption-title { font-size: 12.5px; color: var(--sub); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -304,12 +301,17 @@ footer a:hover { color: var(--text); }
 /* RESPONSIVE */
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; }
-  .hero-right { position: static; max-width: 300px; }
   .nav-links { display: none; }
   h1 { font-size: 46px; }
   .contact-box { padding: 44px 28px; }
   .exp-card, .proj-card { padding: 24px 22px; }
 }
+
+@media (max-width: 860px) {
+  .hero-head { flex-direction: column; }
+  .hero-head-photo { width: 100%; max-width: 320px; }
+}
+  
 </style>
 </head>
 <body>
@@ -336,7 +338,14 @@ footer a:hover { color: var(--text); }
 
   <!-- LEFT: name + about + buttons -->
   <div class="hero-left">
-    <h1>Gursimran<br><em>Singh Walia</em></h1>
+    <div class="hero-head">
+      <h1>Gursimran<br><em>Singh Walia</em></h1>
+      
+      <div class="hero-head-photo photo-frame">
+        <img src="assets/profile.jpeg" alt="Gursimran Singh Walia">
+      </div>
+    </div>
+    
     <p class="hero-role">Computer Engineering @ UBC &nbsp;·&nbsp; Vancouver, BC</p>
 
     <div class="hero-about">
@@ -348,18 +357,12 @@ footer a:hover { color: var(--text); }
       </p>
       <p>
        I’m particularly interested in software, embedded systems, robotics, and AI roles that value strong systems thinking and real-world reliability.
+      </p>
 
     <div class="hero-btns">
       <a href="#contact" class="btn btn-dark">Get in Touch</a>
       <a href="https://github.com/gwalia23" target="_blank" class="btn btn-outline">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/gursimranwalia" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
-    </div>
-  </div>
-
-  <!-- RIGHT: photo -->
-  <div class="hero-right">
-    <div class="photo-frame">
-      <img src="profile.jpeg" alt="Gursimran Singh Walia">
     </div>
   </div>
 
